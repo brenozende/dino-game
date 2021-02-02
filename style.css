@@ -18,6 +18,14 @@ body {
     bottom: 0;
 }
 
+.ptero {
+    width: 45px;
+    height: 25px;
+    background-image: url(ptero.png);
+    position: absolute;
+
+}
+
 .game-over {
     text-align: center;
     color: #666666;

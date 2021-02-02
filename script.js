@@ -64,6 +64,34 @@ function createCactus() {
     setTimeout(createCactus, randomTime);
 }
 
+function createPtero() {
+    const ptero = document.createElement('div');
+    let pteroPosition = 1000;                       //horizontal position
+    let randomTime = Math.random() * 10000;
+    let randomHeight = Math.random() * 125;         //vertical position (doesn't change)
+
+    ptero.classList.add('ptero');
+    ptero.style.left = 1000 + 'px';
+    ptero.style.bottom = randomHeight + 'px';
+    background.appendChild(ptero);
+
+    let leftInterval = setInterval(() => {
+        if (pteroPosition < -45) {
+            clearInterval(leftInterval);
+            background.removeChild(ptero);
+        } else if ((pteroPosition > 0) && (pteroPosition <= 60) && ((position+60) <= randomHeight + 25) && ((position+60) >= randomHeight)) {
+            //Game Over
+            clearInterval(leftInterval);
+            document.body.innerHTML = '<h1 class="game-over">Fim de jogo</h1>';
+        } else {
+            pteroPosition -= 20;
+            ptero.style.left = pteroPosition + 'px';
+        }
+    }, 20);
+    setTimeout(createPtero, randomTime);
+}
+
 createCactus();
+createPtero();
 
 document.addEventListener('keyup', handleKeyUp);       //vê se uma tecla foi pressionada
